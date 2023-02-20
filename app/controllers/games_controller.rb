@@ -18,10 +18,10 @@ class GamesController < ApplicationController
             if result['found']
                 @score = "Congratulations! #{word} is a valid English word!"
             else
-                @score = "#{word} is not a valid English word."
+                @score = "Sorry but #{word} is not a valid English word."
             end
         else
-            @score = "#{word} can't be built out of the original grid."
+            @score = "Sorry but #{word} can't be built out of  #{letters.join(', ')}."
         end
     end
 end
