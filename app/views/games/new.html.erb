@@ -1,18 +1,32 @@
-<h1>New game</h1>
+<div class="container my-5">
+      <h1 class="text-center mb-5">New game</h1>
 
+      <div class="row justify-content-center mb-5">
+        <% @letters.each do |letter| %>
+          <div class="col-auto">
+            <div class="bg-primary text-center text-white p-3 rounded">
+              <%= letter %>
+            </div>
+          </div>
+        <% end %>
+      </div>
 
-  <% @letters.each do |letter| %>
-    <h3 style="display:inline-block"><%= letter %></h3>
-  <% end %>
-
-  <h3>What is the longest word you can find</h3>
-
-<form action="score" method="get" data-turbo="false">
-  <input type="text" name="word">
-  <input type="submit" value="Play">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= hidden_field_tag :letters, @letters %>
-</form>
+      <div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card p-4">
+      <%= form_tag(score_path, method: "get", data: { turbo: false }) do %>
+        <div class="form-group mb-3">
+          <%= text_field_tag :word, nil, class: "form-control", placeholder: "Enter a word" %>
+        </div>
+        <div class="d-grid gap-2">
+          <%= submit_tag "Play", class: "btn btn-primary btn-block" %>
+        </div>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= hidden_field_tag :letters, @letters %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 
 
